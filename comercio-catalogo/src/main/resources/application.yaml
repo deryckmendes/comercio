@@ -1,3 +1,8 @@
 spring:
   application:
     name: comercio-catalogo
+  mongodb:
+    uri: mongodb://localhost:27017/comercio-catalogo
+
+server:
+  port: 8080
