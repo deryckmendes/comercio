@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.comercio.comercio_catalogo.category.dto.request.CategoryRequestDTO;
+import com.comercio.comercio_catalogo.category.dto.response.CategoryResponseDTO;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,18 +29,18 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<Category> getAll() {
+    public List<CategoryResponseDTO> getAll() {
         return categoryService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Category getById(@PathVariable String id) {
+    public CategoryResponseDTO getById(@PathVariable String id) {
         return categoryService.getById(id);
     }
 
     @PostMapping
-    public Category create(@RequestBody Category category) {
-        return categoryService.create(category);
+    public CategoryResponseDTO create(@Valid @RequestBody CategoryRequestDTO categoryDTO) {
+        return categoryService.create(categoryDTO);
     }
 
     @DeleteMapping("/{id}")
