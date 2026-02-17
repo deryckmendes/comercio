@@ -1,0 +1,8 @@
+<div class="input-wrapper">
+  <label for="inputName">{{ label }}</label>
+  <div class="input-content">
+    <span class="left-icon"><ng-content select="[left-icon]"></ng-content></span>
+    <input [value]="value" [type]="type" [placeholder]="placeholder" (input)="onInput($event)" />
+    <span class="right-icon"><ng-content select="[right-icon]"></ng-content></span>
+  </div>
+</div>

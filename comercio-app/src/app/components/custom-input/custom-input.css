@@ -1,0 +1,48 @@
+.input-wrapper {
+    color: #555555;
+    font-size: 0.75rem;
+    text-align: start;
+}
+
+label {
+    display: flex;
+    font-size: small;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 5px;
+    margin-left: 2.5px;
+}
+
+.input-content {
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    position: relative;
+
+    .left-icon {
+        position: absolute;
+        left: 0;
+        padding: 12px;
+        pointer-events: none;
+    }
+
+    .right-icon {
+        position: absolute;
+        right: 0;
+        padding: 12px;
+        pointer-events: none;
+    }
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    padding: 14px 40px 14px 40px;
+    background-color: #f1f3f6;
+
+    &::placeholder {
+        font-weight: 450;
+        color: #94a3b8;
+    }
+}

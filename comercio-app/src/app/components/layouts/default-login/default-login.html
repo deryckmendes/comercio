@@ -1,0 +1,35 @@
+<main [class.signup-mode]="signupMode()">
+  <section class="branding-section">
+    <div class="branding-wrapper">
+      <img class="commerce-img" src="/logo/CommerceDefault.png" alt="Image.Commerce.Default" />
+      <img class="logo-img" src="/logo/logo.png" alt="Logo" />
+      <h3>Pensado na sua Necessidade!</h3>
+    </div>
+  </section>
+  <section class="form-section">
+    <div class="form-wrapper" [class.shifted]="signupMode()">
+      <div
+        class="header-wrapper"
+        [class.shifted]="signupMode()"
+        animation.enter="header-enter-animation"
+        animation.leave="header-leave-animation"
+      >
+        <img class="spreadsheet-img" src="/logo/spreadsheet.png" alt="Spreadsheet" />
+        <h2>{{ title }}</h2>
+      </div>
+      <ng-content></ng-content>
+      <div class="button-wrapper" [class.shifted]="signupMode()">
+        <div class="button-container">
+          <button class="login-button" [disabled]="processing" (click)="submit()" title="acessar conta">
+            {{ loginButton }}
+          </button>
+        </div>
+        <div class="button-container">
+          <button class="signup-button"  (click)="signup()" title="Criar uma nova conta">
+            {{ signupButton }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

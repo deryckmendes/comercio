@@ -1,0 +1,58 @@
+<app-default-login
+  title="Acesse sua conta ou crie uma nova"
+  [title]="'ENTRE EM SUA CONTA!'"
+  loginButton="Entrar"
+  signupButton="Cadastrar"
+  [processing]="!loginForm.valid"
+  (submit)="submit()"
+  (signup)="toggle()"
+>
+  <form [formGroup]="loginForm" [class.expanded]="signupMode()">
+    @if (signupMode()) {
+      <app-custom-input
+        inputName="name"
+        formControlName="name"
+        type="text"
+        label="Nome"
+        placeholder="Seu Nome"
+        class="signup"
+        animate.enter="signup-enter-animation"
+        animate.leave="signup-leave-animation"
+      ></app-custom-input>
+    }
+    <app-custom-input
+      inputName="email"
+      formControlName="email"
+      type="email"
+      label="Email"
+      placeholder="seu@email.com"
+      title="Insira seu email no campo"
+    >
+      <!-- Lucide Icon -->
+    </app-custom-input>
+    <app-custom-input
+      inputName="password"
+      formControlName="password"
+      type="password"
+      label="Senha"
+      placeholder="••••••••"
+      title="Insira sua senha no campo"
+    >
+      <!-- Lucide Icon left-icon -->
+      <!-- Lucide Icon right-icon -->
+    </app-custom-input>
+    @if (signupMode()) {
+      <app-custom-input
+        inputName="confirmPassword"
+        formControlName="confirmPassword"
+        type="password"
+        label="Confirmar Senha"
+        placeholder="••••••••"
+        class="signup"
+        animate.enter="signup-enter-animation"
+        animate.leave="signup-leave-animation"
+      >
+      </app-custom-input>
+    }
+  </form>
+</app-default-login>
