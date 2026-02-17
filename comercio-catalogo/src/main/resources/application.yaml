@@ -2,4 +2,4 @@ spring:
   application:
     name: comercio-catalogo
   mongodb:
-    uri: ${SPRING_DATA_MONGODB_URI}
+    uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/catalogo}
