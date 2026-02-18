@@ -1,0 +1,12 @@
+<div class="button-wrapper" [class.signup-mode]="signupMode">
+  <div class="button-container">
+    <button class="login-button" [disabled]="processing" (click)="onLogin()" title="acessar conta">
+      {{ loginLabel }}
+    </button>
+  </div>
+  <div class="button-container">
+    <button class="signup-button" (click)="onSignup()" title="Criar uma nova conta">
+      {{ signupLabel }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+.header-wrapper {
+  position: relative;
+  transition: transform 0.4s ease;
+
+  .spreadsheet-img {
+    position: relative;
+    top: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+}
+
+.header-wrapper.signup-mode {
+  transform: translateY(50px);
+}
+
+@media (max-width: 48rem) {
+  .header-wrapper {
+    .spreadsheet-img {
+      margin-bottom: 0.1rem;
+      width: 8rem;
+    }
+    h2 {
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      margin-bottom: -1rem;
+    }
+  }
+  .header-wrapper.signup-mode {
+    .spreadsheet-img {
+      display: none;
+    }
+    h2 {
+      margin-bottom: 2rem;
+    }
+  }
+}

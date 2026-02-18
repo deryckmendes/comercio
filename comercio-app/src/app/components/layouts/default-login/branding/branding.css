@@ -1,0 +1,74 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.branding-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2rem;
+  width: clamp(17.5rem, 100%, 34.5rem);
+
+  .commerce-img {
+    position: relative;
+    width: 11rem;
+    margin-bottom: -22px;
+  }
+
+  .logo-img {
+    position: relative;
+    width: 16rem;
+    margin: -1rem;
+    height: auto;
+  }
+
+  h3 {
+    position: relative;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'segoe UI', sans-serif;
+    background: linear-gradient(to right, #02477e, #fd760a);
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    letter-spacing: 0.04rem;
+
+    &::after {
+      content: '';
+      position: relative;
+      display: block;
+      top: -10px;
+      width: 12.5rem;
+      height: 1.25px;
+      background: linear-gradient(to right, #02477e, #fd760a);
+      border-radius: 100%;
+      margin: 8px auto 0;
+    }
+  }
+}
+
+@media (max-width: 48rem) {
+  .branding-wrapper {
+    padding: 2rem;
+
+    .commerce-img,
+    .logo-img {
+      margin-bottom: 0.25rem;
+      width: 7rem;
+    }
+
+    h3 {
+      font-size: 0.5rem;
+      letter-spacing: 0.03rem;
+
+      &::after {
+        width: 8rem;
+        top: -9px;
+      }
+    }
+  }
+}

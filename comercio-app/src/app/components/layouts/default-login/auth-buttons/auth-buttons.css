@@ -1,0 +1,89 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+  gap: 2rem;
+  transition:
+    transform 3s ease-in-out,
+    margin 0.4s ease,
+    gap 0.4s ease;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &:hover .login-button,
+  &:hover .signup-button {
+    transform: translateY(-2.5px);
+    transition: transform 0.1s ease-in-out;
+  }
+
+  &:active .login-button,
+  &:active .signup-button {
+    transform: scale(1.025) translateY(-2.5px);
+    transition: transform 0s ease-in-out;
+  }
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 0.01rem;
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+button.login-button {
+  background-color: #073e74;
+  color: white;
+  box-shadow: 0 6px 24px #33eb9150;
+
+  &:hover {
+    background-color: #073e74f0;
+  }
+}
+
+button.signup-button {
+  border: 1px solid #073e74;
+  color: #073e74;
+
+  &:hover {
+    background-color: #f2f2f2;
+    border: 1px solid #073e74f0;
+  }
+}
+
+.button-wrapper.signup-mode {
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+@media (max-width: 48rem) {
+  .button-wrapper {
+    gap: 1rem;
+  }
+
+  .button-wrapper.signup-mode {
+    margin-top: 3rem;
+    transition: margin-top 1s ease-in-out;
+  }
+}
