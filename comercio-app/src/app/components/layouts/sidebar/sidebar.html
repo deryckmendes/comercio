@@ -1,0 +1,24 @@
+<main>
+  <aside>
+    <div style="padding: 2rem">
+      <div></div>
+    </div>
+    <nav>
+      <button
+        routerLink="/shop/dashboard"
+        routerLinkActive="active-router"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="button-label">Painel</span>
+      </button>
+
+      <button
+        routerLink="/shop/catalog"
+        routerLinkActive="active-router"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="button-label">Catálogo</span>
+      </button>
+    </nav>
+  </aside>
+</main>

@@ -1,0 +1,6 @@
+<div class="product-header">
+    {{ product.name }}
+    <div class="action-buttons" (click)="$event.stopPropagation()">
+        <app-action-button label="Apagar" icon="x" type="delete" (action)="onDelete()"></app-action-button>
+    </div>
+</div>

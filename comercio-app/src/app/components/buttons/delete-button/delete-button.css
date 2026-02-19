@@ -1,0 +1,25 @@
+button {
+  background: #1c2034;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  margin-right: 0.5rem;
+  transition: transform 0.2s;
+  border-radius: 4px;
+  color: white;
+  font-weight: 350;
+  line-height: 1;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.icon {
+    color: rgb(red, 0, 0);
+}

@@ -1,1 +1,20 @@
-<p>catalog works!</p>
+<main>
+  <section class="header-wrapper">
+    <header class="header-content">
+      <app-action-button
+        label="Nova Categoria"
+        icon="+"
+        type="create"
+        (action)="onCreate()"
+      ></app-action-button>
+    </header>
+  </section>
+  <section class="catalog-content">
+    <!-- @if (createForm()) {
+      <app-create-form></app-create-form>
+    } -->
+    @for (category of categories; track category.id) {
+      <app-category [category]="category"></app-category>
+    }
+  </section>
+</main>

@@ -1,0 +1,26 @@
+<div class="sub-category-header" (click)="toggle()">
+  {{ subCategory.name }}
+  <div class="action-buttons" (click)="$event.stopPropagation()">
+    <app-action-button
+      label="Adicionar Produto"
+      icon="+"
+      type="create"
+      (action)="onCreate()"
+    ></app-action-button>
+    <app-action-button
+      label="Apagar"
+      icon=""
+      type="delete"
+      (action)="onCreate()"
+    ></app-action-button>
+  </div>
+  <span>{{ subCategory.expanded ? '^' : 'v' }}</span>
+</div>
+
+@if (subCategory.expanded) {
+  <div class="product-wrapper">
+    @for (product of subCategory.products; track product.id) {
+      <app-product [product]="product"></app-product>
+    }
+  </div>
+}

@@ -1,0 +1,18 @@
+<div class="expandable-header" (click)="onToggle()">
+  <div class="label">{{ label }}</div>
+
+  <div class="right-section" (click)="($event)">
+    <div class="shared-action-buttons">
+      @for (action of actions; track $index) {
+        <app-action-button
+          [label]="action.label"
+          [icon]="action.icon!"
+          [type]="action.type!"
+          (action)="onAction(action, $event)"
+        />
+        <!-- (click)="onAction(action, $event)">{{ action.icon }} {{ action.label }} -->
+      }
+    </div>
+    <span class="toggle-icon">{{ expanded ? '^' : 'v' }}</span>
+  </div>
+</div>

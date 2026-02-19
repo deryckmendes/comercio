@@ -1,0 +1,44 @@
+<div class="category-wrapper">
+  <!-- <app-expandable-header
+    [label]="category.name"
+    [expanded]="category.expanded!"
+    [actions]="[
+      { label: 'Nova Sub-Categoria', icon: '+', type: 'create' },
+      { label: 'Apagar', icon: 'X', type: 'delete' },
+    ]"
+    (toggle)="toggle()"
+    (action)="handleAction($event)"
+  /> -->
+  <div class="category-header" (click)="toggle()">
+    {{ category.name }}
+    <div class="action-buttons" (click)="$event.stopPropagation()">
+      <app-action-button
+        label="Nova Sub-Categoria"
+        icon="+"
+        type="create"
+        (action)="onCreate()"
+      ></app-action-button>
+      <app-action-button
+        label="Delete"
+        icon="0"
+        type="delete"
+        (action)="onDelete()"
+      ></app-action-button>
+    </div>
+    <span>{{ category.expanded ? '^' : 'v' }}</span>
+  </div>
+  @if (category.expanded) {
+    <div class="sub-category-wrapper">
+      @for (subcategory of category.subCategories; track subcategory.id) {
+        <app-sub-category [subCategory]="subcategory"></app-sub-category>
+      }
+    </div>
+  }
+  <!-- @if (category.expanded) {
+    <div class="sub-category-wrapper">
+      @for (sub of category.subCategories; track sub.id) {
+        <app-sub-category></app-sub-category>
+      }
+    </div>
+  } -->
+</div>

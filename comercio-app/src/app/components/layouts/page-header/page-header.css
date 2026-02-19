@@ -1,0 +1,43 @@
+/* main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8fafc;
+  color: white;
+  transition: all 0.2s ease-in-out;
+} */
+
+@media (prefers-color-scheme: dark) {
+  main {
+    background-color: transparent;
+  }
+}
+
+section {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 0 2rem 1rem;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.015rem;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+p {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  padding-left: 0.25rem;
+}
