@@ -1,0 +1,21 @@
+<div class="form-wrapper">
+  <div class="form-content">
+    <form [formGroup]="createForm">
+      <h2>Criar nova(o) {{ type }}</h2>
+
+      <app-custom-input
+        inputName="name"
+        formControlName="name"
+        type="text"
+        label="Nome"
+        placeholder="Digite o nome da(o) {{ type }}"
+        class="name"
+      />
+
+      <div class="actions">
+        <button class="save" (click)="onSave()">Salvar</button>
+        <button class="cancel" (click)="onCancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

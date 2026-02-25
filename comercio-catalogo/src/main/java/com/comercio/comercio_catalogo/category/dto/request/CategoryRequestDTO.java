@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public record CategoryRequestDTO(
-        @NotBlank(message = "Category name is required")
-        @Size(max = 15, message = "Category name must be at most 15 characters")
+        @NotBlank(message = "O nome da Categoria é necessário.") 
+        @Size(max = 30, message = "O nome da Categoria deve ter no máximo 30 caracteres.") 
         String name) {
 }

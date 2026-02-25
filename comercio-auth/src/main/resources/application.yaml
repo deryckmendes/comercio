@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: comercio-auth
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/comercio_auth}
+    username: comercio_user
+    password: comercio_pass
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:minha-chave-de-seguranca}
+
+server:
+  port: 8080

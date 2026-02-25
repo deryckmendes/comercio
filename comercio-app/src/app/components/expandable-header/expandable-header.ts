@@ -1,21 +1,21 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActionButton, ActionType } from "../buttons/action-button/action-button";
+import { ActionButton, ActionType } from '../buttons/action-button/action-button';
 
 export interface ActionItem {
   label: string;
-  icon?: string;
+  icon?: any;
   type?: ActionType;
 }
 
 @Component({
   selector: 'app-expandable-header',
   templateUrl: './expandable-header.html',
-  styleUrls: ['./expandable-header.css', '../layouts/catalog-content/shared-styles.css'],
+  styleUrls: ['./expandable-header.css'],
   imports: [ActionButton],
 })
 export class ExpandableHeader {
   @Input() label!: string;
-  @Input() expanded: boolean = false;
+  @Input() expanded?: boolean | undefined;
   @Input() actions!: ActionItem[];
 
   @Output() toggle = new EventEmitter<void>();

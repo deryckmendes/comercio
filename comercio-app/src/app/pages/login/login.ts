@@ -1,8 +1,9 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { DefaultLogin } from '../../components/layouts/default-login/default-login';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomInput } from '../../components/custom-input/custom-input';
 import { Auth } from '../../services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,8 @@ import { Auth } from '../../services/auth';
   styleUrl: './login.css',
 })
 export class Login {
+  router = inject(Router);
+
   loginForm!: FormGroup;
   signupMode: WritableSignal<boolean> = signal(false);
 
@@ -46,9 +49,20 @@ export class Login {
     });
   }
   submit() {
-    this.auth.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => console.log('Success'),
-      error: () => console.log('Error'),
-    });
+    if (this.loginForm.invalid) return;
+
+    const { email, password } = this.loginForm.value;
+
+    if (this.signupMode()) {
+      this.auth.register(email, password).subscribe({
+        next: () => this.router.navigate(['/shop/catalog']),
+        error: () => {},
+      });
+    } else {
+      this.auth.login(email, password).subscribe({
+        next: () => this.router.navigate(['/shop/catalog']),
+        error: () => {},
+      });
+    }
   }
 }

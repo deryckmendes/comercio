@@ -14,6 +14,6 @@ public class CategoryDTOMapper {
     }
 
     public Category toRequest(CategoryRequestDTO categoryDTO) {
-        return new Category(null, categoryDTO.name());
+        return new Category(null, null, categoryDTO.name());
     }
 }

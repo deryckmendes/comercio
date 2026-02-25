@@ -1,26 +1,18 @@
-<div class="sub-category-header" (click)="toggle()">
-  {{ subCategory.name }}
-  <div class="action-buttons" (click)="$event.stopPropagation()">
-    <app-action-button
-      label="Adicionar Produto"
-      icon="+"
-      type="create"
-      (action)="onCreate()"
-    ></app-action-button>
-    <app-action-button
-      label="Apagar"
-      icon=""
-      type="delete"
-      (action)="onCreate()"
-    ></app-action-button>
-  </div>
-  <span>{{ subCategory.expanded ? '^' : 'v' }}</span>
-</div>
+<app-expandable-header
+  [label]="subCategory.name"
+  [expanded]="subCategory.products?.length ? subCategory.expanded : undefined"
+  [actions]="[
+    { label: 'Produto', icon: '/svg/add.svg', type: 'create' },
+    { label: '', icon: '/svg/trash.svg', type: 'delete' },
+  ]"
+  (toggle)="toggle()"
+  (action)="handleAction($event)"
+/>
 
 @if (subCategory.expanded) {
   <div class="product-wrapper">
     @for (product of subCategory.products; track product.id) {
-      <app-product [product]="product"></app-product>
+      <app-product [product]="product" (delete)="onDeleteProduct($event)"></app-product>
     }
   </div>
 }

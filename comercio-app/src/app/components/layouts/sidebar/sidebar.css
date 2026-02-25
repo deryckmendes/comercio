@@ -1,15 +1,4 @@
-/* main { */
-/* height: 100%; */
-/* display: flex; */
-/* flex-direction: row; */
-/* height: 100vh;
-  background-color: #0f172a; */
-/* min-height: 100vh;
-  background-color: #0f172a;
-} */
-
 aside {
-  /* display: flex; */
   position: fixed;
   top: 0;
   bottom: 0;
@@ -18,20 +7,24 @@ aside {
   background-color: #020617;
   color: white;
   z-index: 10;
+  display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border-right: 1px solid rgba(245, 12, 12, 0.05);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 nav {
   flex: 1;
-  padding: 0 1rem 0 1rem;
-  /* padding-left: 1rem;
-    padding-right: 1rem; */
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   user-select: none;
+}
+
+.logout-container {
+  padding: 1rem;
 }
 
 button {
@@ -71,5 +64,21 @@ button {
     outline: none;
     background-color: #073e74;
     color: white;
+  }
+}
+
+.logout-button {
+  background-color: transparent;
+  color: #f87171;
+
+  &:hover {
+    background-color: #7f1d1d50;
+    color: white;
+  }
+
+  &:active {
+    background-color: #dc262675;
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(175, 32, 30, 0.2);
   }
 }

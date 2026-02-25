@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Auth } from '../../../services/auth';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,5 +9,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
+  auth = inject(Auth);
+  router = inject(Router);
 
+  logout() {
+    this.auth.logout().subscribe(() => {
+      this.router.navigate(['/login']);
+    });
+  }
 }

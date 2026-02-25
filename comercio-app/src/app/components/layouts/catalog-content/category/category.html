@@ -1,44 +1,28 @@
 <div class="category-wrapper">
-  <!-- <app-expandable-header
+  <app-expandable-header
     [label]="category.name"
-    [expanded]="category.expanded!"
+    [expanded]="category.subCategories?.length ? category.expanded : undefined"
     [actions]="[
-      { label: 'Nova Sub-Categoria', icon: '+', type: 'create' },
-      { label: 'Apagar', icon: 'X', type: 'delete' },
+      { label: 'Sub-Categoria', icon: '/svg/add.svg', type: 'create' },
+      { label: '', icon: '/svg/trash.svg', type: 'delete' },
     ]"
     (toggle)="toggle()"
     (action)="handleAction($event)"
-  /> -->
-  <div class="category-header" (click)="toggle()">
-    {{ category.name }}
-    <div class="action-buttons" (click)="$event.stopPropagation()">
-      <app-action-button
-        label="Nova Sub-Categoria"
-        icon="+"
-        type="create"
-        (action)="onCreate()"
-      ></app-action-button>
-      <app-action-button
-        label="Delete"
-        icon="0"
-        type="delete"
-        (action)="onDelete()"
-      ></app-action-button>
-    </div>
-    <span>{{ category.expanded ? '^' : 'v' }}</span>
-  </div>
+  />
   @if (category.expanded) {
-    <div class="sub-category-wrapper">
-      @for (subcategory of category.subCategories; track subcategory.id) {
-        <app-sub-category [subCategory]="subcategory"></app-sub-category>
+    @if (loading()) {
+      <p>Carregando subcategorias...</p>
+    } @else {
+      @if (category.subCategories) {
+        <div class="sub-category-wrapper">
+          @for (subcategory of category.subCategories; track subcategory.id) {
+            <app-sub-category
+              [subCategory]="subcategory"
+              (delete)="onDeleteSubCategory($event)"
+            ></app-sub-category>
+          }
+        </div>
       }
-    </div>
+    }
   }
-  <!-- @if (category.expanded) {
-    <div class="sub-category-wrapper">
-      @for (sub of category.subCategories; track sub.id) {
-        <app-sub-category></app-sub-category>
-      }
-    </div>
-  } -->
 </div>

@@ -2,40 +2,62 @@ import { ChangeDetectorRef, Component, OnInit, signal, WritableSignal } from '@a
 import { ActionButton } from '../../../components/buttons/action-button/action-button';
 import { Category } from '../../../components/layouts/catalog-content/category/category';
 import { CategoryService } from '../../../services/api/category';
-import { CategoryModel } from '../../../services/api/models/category';
+import { ItemCreator } from '../../../components/layouts/item-creator/item-creator';
+import { Itemcreator } from '../../../services/itemcreator';
+import { ItemCreationService } from '../../../services/item-creation-service';
+import { ItemType } from '../../../types/item-type';
+import { ItemDelete } from '../../../services/item-delete';
+import { ItemDeleteService } from '../../../services/item-delete-service';
+import { ItemManagerService } from '../../../services/item-manager-service';
 
 @Component({
   selector: 'app-catalog',
-  imports: [ActionButton, Category],
+  imports: [ActionButton, Category, ItemCreator],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css',
 })
 export class Catalog implements OnInit {
-  createForm: WritableSignal<boolean> = signal(false);
-  // currentCreateContext?: CreateEvent | null = null; é um model create-event, tem o delete-event tambem
+  itemCreator: WritableSignal<boolean> = signal(false);
+  itemCreatorType!: ItemType;
+  itemCreatorParentId!: string | undefined;
+  ItemDeleteId!: string;
+  ItemDeleteParentId: string | undefined;
 
-  categories: CategoryModel[] = [];
+  categories;
 
   constructor(
     private categoryService: CategoryService,
     private cdr: ChangeDetectorRef,
-  ) {}
+    private itemCreatorEvent: Itemcreator,
+    private itemCreationService: ItemCreationService,
+    private itemDeleteEvent: ItemDelete,
+    private itemDeleteService: ItemDeleteService,
+    private itemManager: ItemManagerService,
+  ) {
+    this.categories = this.itemManager.categories$;
+  }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe((categories) => {
-      this.categories = categories.map((category) => ({
-        ...category,
-        expanded: false,
-      }));
-      console.log(this.categories);
-
-      this.cdr.detectChanges();
+    this.itemManager.openCreateModal$.subscribe(({ type, parentId, status }) => {
+      this.itemCreatorType = type;
+      this.itemCreatorParentId = parentId || undefined;
+      this.itemCreator.set(status);
     });
   }
 
   toggleCreate() {
-    //evento pra abrir a tela de criar nova categoria
+    this.itemCreator.update((current) => !current);
   }
 
-  onCreate() {}
+  onItemCreate() {
+    this.itemCreatorEvent.emitCreate('category');
+  }
+
+  onDelete(data: { id: string }) {
+    const payload = {
+      id: data.id,
+      parentId: this.ItemDeleteId,
+    };
+
+  }
 }

@@ -10,7 +10,7 @@ import { SubCategoryModel } from './models/sub-category';
 })
 export class ProductService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = `${environment.apiUrl}/products`;
+  private readonly baseUrl = `${environment.catalogUrl}/products`;
 
   getAll(): Observable<ProductModel[]> {
     return this.http.get<ProductModel[]>(this.baseUrl);

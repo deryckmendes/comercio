@@ -19,7 +19,6 @@ export class Shop implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
-  
   ngOnInit() {
     this.router.events
       .pipe(
@@ -36,7 +35,6 @@ export class Shop implements OnInit {
         mergeMap((route) => route.data),
       )
       .subscribe((data) => {
-        console.log('dados: ', data);
         this.title = data['title'];
         this.subtitle = data['subtitle'];
       });

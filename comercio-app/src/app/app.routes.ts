@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
 import { Catalog } from './pages/shop/catalog/catalog';
 import { Shop } from './pages/shop/shop';
+import { authGuard } from './guard/auth-guard';
+import { Panel } from './pages/shop/panel/panel';
 
 export const routes: Routes = [
   {
@@ -16,12 +18,24 @@ export const routes: Routes = [
   {
     path: 'shop',
     component: Shop,
+    canActivate: [authGuard],
     children: [
       {
         path: 'catalog',
         component: Catalog,
         data: { title: 'Catálogo', subtitle: 'Gerencie seus produtos' },
+        canActivate: [authGuard],
+      },
+      {
+        path: 'dashboard',
+        component: Panel,
+        data: { title: 'Painel', subtitle: 'Painel principal' },
+        canActivate: [authGuard],
       },
     ],
+  },
+  {
+    path: '**',
+    redirectTo: 'login',
   },
 ];

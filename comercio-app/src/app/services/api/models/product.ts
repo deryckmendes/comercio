@@ -1,6 +1,7 @@
 export class ProductModel {
   id?: string;
-  subCategoryId!: string;
   name!: string;
+  description?: string;
+  price?: number;
   quantity?: number;
 }

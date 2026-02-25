@@ -1,3 +1,7 @@
 <button [ngClass]="type" [title]="label" (click)="onClick($event)">
-  <span class="icon" [class]="icon">{{ icon }}</span> {{ label }}
+  @if (icon) {
+    <img class="svg" [src]="icon" alt="" />
+  }
+
+  {{ label }}
 </button>

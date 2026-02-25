@@ -10,9 +10,12 @@
           [type]="action.type!"
           (action)="onAction(action, $event)"
         />
-        <!-- (click)="onAction(action, $event)">{{ action.icon }} {{ action.label }} -->
       }
     </div>
-    <span class="toggle-icon">{{ expanded ? '^' : 'v' }}</span>
+    @if (expanded != undefined) {
+      <span class="toggle-icon"
+        ><img class="icon" [src]="expanded ? '/svg/arrow-open.svg' : '/svg/arrow-down.svg'" alt=""
+      /></span>
+    }
   </div>
 </div>

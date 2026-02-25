@@ -8,9 +8,8 @@ describe('FormHeader', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormHeader]
-    })
-    .compileComponents();
+      imports: [FormHeader],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormHeader);
     component = fixture.componentInstance;

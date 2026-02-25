@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export type ActionType = 'create' | 'delete';
 
@@ -10,8 +10,8 @@ export type ActionType = 'create' | 'delete';
   styleUrl: './action-button.css',
 })
 export class ActionButton {
-  @Input() label: string = '';
-  @Input() icon: string = '';
+  @Input() label?: string = '';
+  @Input() icon?: any;
   @Input() type!: ActionType;
   @Output() action = new EventEmitter<any>();
 
