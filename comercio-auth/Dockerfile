@@ -1,19 +1,11 @@
-FROM maven:3.9.4-eclipse-temurin-21-alpine AS build
-
+FROM maven:3.9.12-eclipse-temurin-21-alpine AS build
+COPY src /app/src
+COPY pom.xml /app
 WORKDIR /app
-
-COPY . .
-
-RUN ./mvnw clean package -DskipTests
-
-
+RUN mvn clean install -DskipTests
 
 FROM eclipse-temurin:21-jdk-alpine
-
+COPY --from=build /app/target/comercio-auth-0.0.1-SNAPSHOT.jar /app/app.jar
 WORKDIR /app
-
-COPY --from=build /app/target/*.jar app.jar
-
 EXPOSE 8080
-
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+CMD [ "java", "-jar", "app.jar" ]

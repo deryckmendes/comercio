@@ -1,8 +1,8 @@
 services:
   mongo:
     image: mongo:latest
-    ports:
-      - "27017:27017"
+    expose:
+      - "27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
@@ -13,8 +13,8 @@ services:
   postgres:
     image: postgres:15
     container_name: postgres
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -23,13 +23,26 @@ services:
       - postgres-data:/var/lib/postgresql/data
     restart: always
 
+  rabbitmq:
+    image: rabbitmq:4.2.4-management
+    container_name: rabbit_mq
+    expose:
+      - "5672"
+    ports:
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    restart: always
+
   catalogo:
     build: ./comercio-catalogo
     container_name: comercio_catalogo
-    ports:
-      - "8081:8081"
     depends_on:
       - mongo
+      - rabbitmq
     environment:
       SPRING_DATA_MONGODB_URI: ${SPRING_DATA_MONGODB_URI}
     restart: always
@@ -37,27 +50,26 @@ services:
   auth:
     build: ./comercio-auth
     container_name: comercio_auth
-    ports:
-      - "8080:8080"
     depends_on:
       - postgres
+      - rabbitmq
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
     restart: always
 
-  angular-app:
+  comercio-app:
     build: ./comercio-app
     container_name: comercio_app
     ports:
-      - "4200:4200"
+      - "80:80"
     depends_on:
       - catalogo
-    volumes:
-      - ./angular-app:/usr/src/app
+      - auth
     restart: always
 
 volumes:
   mongo-data:
   postgres-data:
+  rabbitmq-data:

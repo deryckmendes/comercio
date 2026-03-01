@@ -6,10 +6,10 @@ spring:
       ddl-auto: update
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/comercio_auth}
-    username: comercio_user
-    password: comercio_pass
+    username: ${POSTGRES_USER:comercio_user}
+    password: ${POSTGRES_PASSWORD:comercio_pass}
   rabbitmq:
-    host: localhost
+    host: rabbitmq
     port: 5672
     username: guest
     password: guest
