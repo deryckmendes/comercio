@@ -9,26 +9,27 @@ import { Auth } from './auth';
 import { Router } from '@angular/router';
 import { catchError, switchMap, throwError } from 'rxjs';
 
+let isRefreshing = false;
+
 export const AuthInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
   const auth = inject(Auth);
   const router = inject(Router);
 
-  if (req.url.includes('/auth/refresh')) {
-    return next(req);
-  }
+  const authReq = req.clone({ withCredentials: true });
 
-  return next(req).pipe(
+  return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      console.log('Chamado, erro: ', error);
-
-      if (error.status === 0 || error.status === 403 || error.status === 401) {
-        console.log('tentando renovar');
-
+      if (error.status === 401 && !isRefreshing) {
+        isRefreshing = true;
         return auth.refresh().pipe(
-          switchMap(() => next(req)),
-          catchError(() => {
+          switchMap(() => {
+            isRefreshing = false;
+            return next(authReq);
+          }),
+          catchError((refreshError) => {
+            isRefreshing = false;
             router.navigate(['/login']);
-            return throwError(() => error);
+            return throwError(() => refreshError);
           }),
         );
       }

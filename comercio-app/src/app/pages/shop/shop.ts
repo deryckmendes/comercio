@@ -26,7 +26,7 @@ export class Shop implements OnInit {
         startWith(null),
         map(() => {
           let currentRoute = this.route.root;
-          console.log(currentRoute);
+          
           while (currentRoute.firstChild) {
             currentRoute = currentRoute.firstChild;
           }

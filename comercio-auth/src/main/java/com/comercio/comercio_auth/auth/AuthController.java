@@ -1,5 +1,6 @@
 package com.comercio.comercio_auth.auth;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -95,14 +96,17 @@ public class AuthController {
 
     @GetMapping("/logged")
     public ResponseEntity<?> logged() {
-        var authentication = SecurityContextHolder.getContext().getAuthentication();
-        
-        if (authentication != null && authentication.isAuthenticated()) {
-            var user = (User) authentication.getPrincipal();
 
-            return ResponseEntity.ok().body(Map.of(
-                    "email", user.getUsername(),
-                    "roles", user.getAuthorities()));
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof User user) {
+                return ResponseEntity.ok().body(Map.of(
+                        "email", user.getUsername(),
+                        "roles", user.getAuthorities()));
+            }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

@@ -4,6 +4,7 @@ import { Catalog } from './pages/shop/catalog/catalog';
 import { Shop } from './pages/shop/shop';
 import { authGuard } from './guard/auth-guard';
 import { Panel } from './pages/shop/panel/panel';
+import { loginGuard } from './guard/login-guard';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,7 @@ export const routes: Routes = [
   {
     path: 'login',
     component: Login,
+    canActivate: [loginGuard],
   },
   {
     path: 'shop',
@@ -24,13 +26,11 @@ export const routes: Routes = [
         path: 'catalog',
         component: Catalog,
         data: { title: 'Catálogo', subtitle: 'Gerencie seus produtos' },
-        canActivate: [authGuard],
       },
       {
         path: 'dashboard',
         component: Panel,
         data: { title: 'Painel', subtitle: 'Painel principal' },
-        canActivate: [authGuard],
       },
     ],
   },

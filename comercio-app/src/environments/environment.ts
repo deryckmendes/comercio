@@ -1,1 +1,4 @@
-export const environment = {};
+export const environment = {
+  catalogUrl: '/api',
+  authUrl: '/auth',
+};

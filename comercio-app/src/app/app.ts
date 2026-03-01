@@ -14,12 +14,12 @@ export class App implements OnInit {
   router = inject(Router);
 
   ngOnInit(): void {
-    this.auth.isAuthenticated().subscribe((authenticated) => {
-      if (authenticated) {
-        this.router.navigate(['/shop/catalog']);
-      } else {
-        this.router.navigate(['/login']);
-      }
-    });
+    // this.auth.isAuthenticated().subscribe((authenticated) => {
+    //   if (authenticated) {
+    //     this.router.navigate(['/shop/catalog']);
+    //   } else {
+    //     this.router.navigate(['/login']);
+    //   }
+    // });
   }
 }

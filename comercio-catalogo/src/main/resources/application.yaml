@@ -2,9 +2,9 @@ spring:
   application:
     name: comercio-catalogo
   mongodb:
-    uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/catalogo}
+    uri: ${SPRING_DATA_MONGODB_URI:mongodb://mongo:mongo@localhost:27017/catalogo?authSource=admin}
   rabbitmq:
-    host: rabbitmq
+    host: ${rabbitmq:localhost}
     port: 5672
     username: guest
     password: guest
